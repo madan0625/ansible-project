@@ -1,0 +1,33 @@
+- name: installing mysql
+  hosts: db
+  become: yes
+  # vars:
+  #  root_password: ExpenseApp@1
+  #  host_address: "10.0.0.5"
+  tasks:
+    - name: install sql
+      ansible.builtin.package:
+        name: mysql-server
+        state: present
+
+    - name: start mysqld
+      ansible.builtin.service:
+        name : mysqld
+        state: started
+        enabled: yes
+    
+    # - name: set password
+    #   community.mysql.mysql_info:
+    #     login_user: root
+    #     login_password: "{{ root_password }}"
+    #     login_host: "{{ host_address }}"
+    #     ignore_errors: yes
+    #     register: sql_info
+
+    # - name: print the data
+    #   ansible.builtin.debug:
+    #     msg: "{{ sql_info }}"
+
+    # - name: check root password exist or not
+    #   ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ root_password }}"
+    #   when:

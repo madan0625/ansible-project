@@ -6,11 +6,11 @@
    login_host: "10.0.0.5"
   tasks:
     
-    # - name: ansible to install pymysql
-    #   ansible.builtin.pip:
-    #     name:
-    #     - PyMySQL
-    #   executable: pip3.9
+    - name: ansible to install pymysql
+      ansible.builtin.pip:
+        name:
+        - PyMySQL
+      executable: pip3.9
 
     - name: install sql
       ansible.builtin.package:

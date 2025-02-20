@@ -2,7 +2,7 @@
   hosts: db
   become: yes
   vars:
-   sql_root_password: ExpenseApp@1
+   mysql_root_password: ExpenseApp@1
    login_host: "10.0.0.5"
   tasks:
     
@@ -36,5 +36,5 @@
         msg: "{{ mysql_info }}"
 
     - name: check root password exist or not
-      ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ root_password }}"
+      ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ mysq_root_password }}"
       when: mysql_info.failed is true

@@ -2,8 +2,8 @@
   hosts: db
   become: yes
   vars:
-   root_password: ExpenseApp@1
-   login_host: "[10.0.0.5]"
+   sql_root_password: ExpenseApp@1
+   login_host: "10.0.0.5"
   tasks:
     - name: install sql
       ansible.builtin.package:
@@ -16,17 +16,17 @@
         state: started
         enabled: yes
     
-    - name: password updating
+    - name: connect mysql server
       community.mysql.mysql_info:
-        login_user: root
-        login_password: "{{ root_password }}"
-        login_host: "{{ login_host }}"
+       login_user: root
+       login_password: "{{ mysql_root_password }}"
+       login_host: "{{ login_host }}"
       ignore_errors: true
       register: mysql_info
 
-    - name: print the data
+    - name: print mysql info
       ansible.builtin.debug:
-        msg: "{{ mysql_info }}"
+      msg: "{{ mysql_info }}"
 
     # - name: check root password exist or not
     #   ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ root_password }}"

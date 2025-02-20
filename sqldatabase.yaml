@@ -5,6 +5,13 @@
    sql_root_password: ExpenseApp@1
    login_host: "10.0.0.5"
   tasks:
+    
+    # - name: ansible to install pymysql
+    #   ansible.builtin.pip:
+    #     name:
+    #     - PyMySQL
+    #   executable: pip3.9
+
     - name: install sql
       ansible.builtin.package:
         name: mysql-server
@@ -18,15 +25,15 @@
     
     - name: connect mysql server
       community.mysql.mysql_info:
-       login_user: "root"
-       login_password: "{{ mysql_root_password }}"
-       login_host: "{{ login_host }}"
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        login_host: "{{ login_host }}"
       ignore_errors: true
       register: mysql_info
 
     - name: print mysql info
       ansible.builtin.debug:
-      msg: "{{ mysql_info }}"
+        msg: "{{ mysql_info }}"
 
     # - name: check root password exist or not
     #   ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ root_password }}"

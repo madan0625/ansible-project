@@ -1,6 +1,6 @@
 
 - name: mysql configuration
-  hosts: mysql
+  hosts: db
   become: yes
   # vars:
   #   mysql_root_password: ExpenseApp@1

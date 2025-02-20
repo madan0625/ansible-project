@@ -16,13 +16,13 @@
         state: started
         enabled: yes
     
-    - name: set password
+    - name: password updating
       community.mysql.mysql_info:
         login_user: root
         login_password: "{{ root_password }}"
         login_host: "{{ host_address }}"
-        ignore_errors: yes
-        register: sql_info
+      ignore_errors: true
+      register: sql_info
 
     - name: print the data
       ansible.builtin.debug:
